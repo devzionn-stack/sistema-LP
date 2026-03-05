@@ -331,9 +331,10 @@ app.get('*', (_req: Request, res: Response) => {
 
 // ============= INICIAR SERVIDOR =============
 async function startServer() {
-  const port = process.env.PORT || 3000;
+  const port = Number(process.env.PORT) || 3000;
 
-  server.listen(port, () => {
+  // AQUI ESTÁ A CORREÇÃO: Adicionado o '0.0.0.0'
+  server.listen(port, '0.0.0.0', () => {
     console.log(`\n🚀 De Gusta Pizzas - Servidor rodando!`);
     console.log(`📍 Local: http://localhost:${port}/`);
     console.log(`🌐 Network: http://0.0.0.0:${port}/`);
