@@ -1,20 +1,20 @@
-versão: "3.9"
+version: "3.9"
 
-Serviços:
-  aplicativo:
-    construir: .
-    nome_do_container: sistema-lp
-    reiniciar: sempre
-    arquivo_de_ambiente:
+services:
+  app:
+    build: .
+    container_name: sistema-lp
+    restart: always
+    env_file:
       - .env
-    # 👇 MUDANÇA 1: Trocamos o bloqueio público 'portas' pelo acesso interno 'expose'
-    Vale:
+    # 👇 MUDANÇA 1: Trocamos o bloqueio público 'ports' pelo acesso interno 'expose'
+    expose:
       - "3000"
     # 👇 MUDANÇA 2: Conectamos o contêiner à nossa ponte de comunicação
-    redes:
+    networks:
       - rede-proxy
 
 # 👇 MUDANÇA 3: Avisamos ao arquivo que essa rede já foi criada no servidor
-redes:
+networks:
   rede-proxy:
-    externo: verdadeiro
+    external: true
